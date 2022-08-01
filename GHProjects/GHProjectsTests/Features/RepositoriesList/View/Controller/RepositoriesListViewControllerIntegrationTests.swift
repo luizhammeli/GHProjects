@@ -81,6 +81,21 @@ final class RepositoriesListViewControllerTests: XCTestCase {
         
         XCTAssertEqual(cell?.issuesRepositoryView.numberLabel.text, "14")
         XCTAssertEqual(cell?.issuesRepositoryView.imageView.image, UIImage(systemName: "exclamationmark.circle"))
+        XCTAssertEqual(cell?.issuesRepositoryView.imageView.image, UIImage(systemName: "exclamationmark.circle"))        
+    }
+    
+    func test_cellForItem_shouldShowOrHideCellSeparatorViewCorrectly() {
+        let (sut, service) = makeSUT()
+        let fakeRepository = makeRepository().model
+        let fakeRepository2 = makeRepository().model
+        
+        sut.loadViewIfNeeded()
+        service.complete(with: .success(.init(items: [fakeRepository, fakeRepository2])), hasMoreData: false)
+        
+        let cell = sut.cellForItem(at: 0)
+        let cell2 = sut.cellForItem(at: 1)
+        XCTAssertEqual(cell?.separatorView.isHidden, false)
+        XCTAssertEqual(cell2?.separatorView.isHidden, true)
     }
     
     func test_didSelectItem_shouldStartCoordinatorFlow() {

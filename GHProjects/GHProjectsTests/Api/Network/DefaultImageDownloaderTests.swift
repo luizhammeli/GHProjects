@@ -38,80 +38,59 @@ final class DefaultImageDownloaderTests: XCTestCase {
                 
         XCTAssertEqual(receivedResult, .failure(.invalidURL))
     }
-    func test_download_() {
+    
+    func test_download_shouldSendCorrectURL() {
         let url = makeURL()
-        var receivedResult: Result<UIImage, GHImageError>?
         let sut = makeSut()
+        var receivedURL: URL?
         
         let exp = expectation(description: #function)
-        URLProtocolStub.stub(url: url, response: nil, error: makeError(), data: nil)
-        sut.download(stringURL: url.description, completion: { result in
-            receivedResult = result
+        
+        URLProtocolStub.observeRequest { urlRequest in
+            receivedURL = urlRequest.url
             exp.fulfill()
-        })
+        }
+        
+        sut.download(stringURL: url.description) { _ in }
         
         wait(for: [exp], timeout: 1)
-        XCTAssertEqual(receivedResult, .failure(.fetch))
+    
+        XCTAssertEqual(receivedURL?.description, url.description)
     }
     
-    func test_download__() {
-        let url = makeURL()
-        var receivedResult: Result<UIImage, GHImageError>?
-        let sut = makeSut()
-        
-        let exp = expectation(description: #function)
-        URLProtocolStub.stub(url: url, response: nil, error: nil, data: nil)
-        sut.download(stringURL: url.description, completion: { result in
-            receivedResult = result
-            exp.fulfill()
-        })
-        
-        wait(for: [exp], timeout: 1)
-        XCTAssertEqual(receivedResult, .failure(.fetch))
-    }
-    
-    func test_download___() {
-        let url = makeURL()
-        var receivedResult: Result<UIImage, GHImageError>?
-        let sut = makeSut()
-        
-        let exp = expectation(description: #function)
-        URLProtocolStub.stub(url: url, response: nil, error: nil, data: Data())
-        sut.download(stringURL: url.description, completion: { result in
-            receivedResult = result
-            exp.fulfill()
-        })
-        
-        wait(for: [exp], timeout: 1)
-        XCTAssertEqual(receivedResult, .failure(.fetch))
-    }
-    
-    func test_download____() {
-        let url = makeURL()
-        var receivedResult: Result<UIImage, GHImageError>?
-        let sut = makeSut()
-        
-        let exp = expectation(description: #function)
-        URLProtocolStub.stub(url: url, response: nil, error: nil, data: makeImageData().data)
-        sut.download(stringURL: url.description, completion: { result in
-            receivedResult = result
-            exp.fulfill()
-        })
-        
-        wait(for: [exp], timeout: 1)
-        guard case .success = receivedResult else {
-            XCTFail("Expect success got \(String(describing: receivedResult)) instead")
-            return
+    func test_download_shouldFailIfResponseHasError() {
+        expect(result: .failure(.fetch)) {
+            URLProtocolStub.stub(response: nil, error: makeError(), data: nil)
         }
     }
     
-    func test_download_____() {
+    func test_download_shouldFailIfResponseIsEmpty() {
+        expect(result: .failure(.fetch)) {
+            URLProtocolStub.stub(response: nil, error: nil, data: nil)
+        }
+    }
+    
+    func test_download_shouldFailIfResponseHasInvalidData() {
+        expect(result: .failure(.fetch)) {
+            URLProtocolStub.stub(response: nil, error: nil, data: Data())
+        }
+    }
+    
+    func test_download_shouldSucceedfResponseHasValidImageData() {
+        let imageData = makeImageData()
+        
+        expect(result: .success(imageData.image)) {
+            URLProtocolStub.stub(response: nil, error: nil, data: imageData.data)
+        }
+    }
+    
+    func test_download_shouldSaveCacheIfRequestSucceed() {
         let url = makeURL()
         let cacheSpy = NSCacheSpy()
         let sut = makeSut(cacheSpy: cacheSpy)
         
         let exp = expectation(description: #function)
-        URLProtocolStub.stub(url: url, response: nil, error: nil, data: makeImageData().data)
+        URLProtocolStub.stub(response: nil, error: nil, data: makeImageData().data)
         sut.download(stringURL: url.description, completion: { _ in exp.fulfill() })
         
         wait(for: [exp], timeout: 1)
@@ -125,95 +104,32 @@ private extension DefaultImageDownloaderTests {
         return sut
     }
     
-    func makeURL() -> URL {
-        URL(string: "https://www.test.com")!
-    }
-    
-    func makeError() -> NSError {
-        NSError(domain: "", code: 1)
-    }
-    
-    func makeImageData() -> (data: Data, image: UIImage) {
-        let image = UIImage.make(withColor: .red)
-        return (image.pngData()!, image)
-    }
-}
-
-final class NSCacheSpy: NSCache<NSString, UIImage> {
-    private let fakeImage: UIImage?
-    var requestedKeys: [NSString] = []
-    var sendedImages: [String] = []
-    
-    init(fakeImage: UIImage? = nil) {
-        self.fakeImage = fakeImage
-    }
-    
-    override func object(forKey key: NSString) -> UIImage? {
-        requestedKeys.append(key)
-        return fakeImage
-    }
-    
-    override func setObject(_ obj: UIImage, forKey key: NSString) {
-        sendedImages.append(String(key))
-    }
-}
-
-private struct Stub {
-    let error: Error?
-    let response: URLResponse?
-    let data: Data?
-}
-
-private class URLProtocolStub: URLProtocol {
-    private static var stub: Stub?
-    private static var requestObserver: ((URLRequest) -> Void)?
-    
-    static func stub(url: URL, response: URLResponse?, error: Error?, data: Data?) {
-        URLProtocolStub.stub = Stub(error: error, response: response, data: data)
-    }
-    
-    static func startIntercepting() {
-        URLProtocol.registerClass(URLProtocolStub.self)
-    }
-    
-    static func stopIntercepting() {
-        URLProtocol.unregisterClass(URLProtocolStub.self)
-    }
-    
-    static func observeRequest(_ observer: @escaping (URLRequest) -> Void) {
-        requestObserver = observer
-    }
-    
-    override class func canInit(with request: URLRequest) -> Bool {
-        return true
-    }
-    
-    override class func canonicalRequest(for request: URLRequest) -> URLRequest {
-        return request
-    }
-    
-    override func startLoading() {
-        if let requestObserver = URLProtocolStub.requestObserver {
-            client?.urlProtocolDidFinishLoading(self)
-            return requestObserver(request)
-        }
-
-        if let response = URLProtocolStub.stub?.response {
-            client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
-        }
+    func expect(result: Result<UIImage, GHImageError>,
+                when action: @escaping () -> Void,
+                file: StaticString = #filePath,
+                line: UInt = #line) {
+        // Given
+        let url = makeURL()
+        var receivedResult: Result<UIImage, GHImageError>?
+        let sut = makeSut()
         
-        if let error = URLProtocolStub.stub?.error {
-            client?.urlProtocol(self, didFailWithError: error)
-        }
+        // When
+        let exp = expectation(description: #function)
+        action()
+        sut.download(stringURL: url.description, completion: { result in
+            receivedResult = result
+            exp.fulfill()
+        })
         
-        if let data = URLProtocolStub.stub?.data {
-            client?.urlProtocol(self, didLoad: data)
+        // Then
+        wait(for: [exp], timeout: 1)
+        switch (receivedResult, result) {
+        case (.success, .success):
+            break
+        case (.failure(let receivedError), .failure(let expectedError)):
+            XCTAssertEqual(receivedError, expectedError, file: file, line: line)
+        default:
+            XCTFail("Expect \(result) got \(String(describing: receivedResult)) instead", file: file, line: line)
         }
-        
-        client?.urlProtocolDidFinishLoading(self)
-    }
-    
-    override func stopLoading() {
-        URLProtocolStub.requestObserver = nil
     }
 }

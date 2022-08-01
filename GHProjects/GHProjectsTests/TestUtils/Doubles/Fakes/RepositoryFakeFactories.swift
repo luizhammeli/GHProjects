@@ -6,7 +6,7 @@
 //  Copyright © 2022 PEBMED. All rights reserved.
 //
 
-import Foundation
+import UIKit
 @testable import GHProjects
 
 func makeRepository(id: Int = 0) -> (model: Repository, viewModel: RepositoryViewModelItem) {
@@ -39,4 +39,17 @@ func makeRepositoryItems() -> Repository {
                       stargazersCount: 0,
                       forksCount: 0,
                       openIssuesCount: 0)
+}
+
+func makeURL() -> URL {
+    URL(string: "https://www.test.com")!
+}
+
+func makeError() -> NSError {
+    NSError(domain: "", code: 1)
+}
+
+func makeImageData() -> (data: Data, image: UIImage) {
+    let image = UIImage.make(withColor: .red)
+    return (image.pngData()!, image)
 }
