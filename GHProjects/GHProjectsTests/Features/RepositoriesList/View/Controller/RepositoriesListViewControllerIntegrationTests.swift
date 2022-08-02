@@ -84,6 +84,17 @@ final class RepositoriesListViewControllerTests: XCTestCase {
         XCTAssertEqual(cell?.issuesRepositoryView.imageView.image, UIImage(systemName: "exclamationmark.circle"))        
     }
     
+    func test_cellForItem_shouldReturnCorrectCellWithFallbackDescription() {
+        let (sut, service) = makeSUT()
+        let fakeRepository = makeRepository(description: nil).model
+        
+        sut.loadViewIfNeeded()
+        service.complete(with: .success(.init(items: [fakeRepository])), hasMoreData: false)
+        let cell = sut.cellForItem(at: 0)
+        
+        XCTAssertEqual(cell?.desciprionLabel.text, "No description available")
+    }
+    
     func test_cellForItem_shouldShowOrHideCellSeparatorViewCorrectly() {
         let (sut, service) = makeSUT()
         let fakeRepository = makeRepository().model

@@ -9,11 +9,11 @@
 import UIKit
 @testable import GHProjects
 
-func makeRepository(id: Int = 0) -> (model: Repository, viewModel: RepositoryViewModelItem) {
+func makeRepository(id: Int = 0, description: String? = "Test Description") -> (model: Repository, viewModel: RepositoryViewModelItem) {
     let model = Repository(id: id,
                            name: "Test Repo \(id)",
                            fullName: "Full Name Test Repo",
-                           description: "Test Description",
+                           description: description,
                            owner: .init(id: 10, login: "Test Owner", avatarUrl: nil),
                            stargazersCount: 12,
                            forksCount: 13,
