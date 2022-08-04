@@ -10,31 +10,22 @@ import Foundation
 
 final class DefaultDataRequest: DataRequest {
     // MARK: - Properties
-    private let url: URL
-    private let method: HTTPMethod
-    private let parameters: [String: Any]
-    private let headers: [String: String]
     private let session: URLSession
 
-    var task: URLSessionTask?
+    var tasks: [URLSessionTask?] = []
 
     // MARK: - Init
-    init(url: URL, method: HTTPMethod, parameters: [String: Any], headers: [String: String]) {
-        self.url = url
-        self.method = method
-        self.parameters = parameters
-        self.headers = headers
-
-        self.session = URLSession(configuration: .default)
+    init(session: URLSession = URLSession.shared) {
+        self.session = session
     }
 
     // MARK: - Functions
-    func cancel() {
-        task?.cancel()
+    func cancel() {        
+        tasks.forEach { $0?.cancel() }
     }
 
-    func responseData(completion: @escaping (Result<Data, GHError>) -> Void) {
-        task = session.dataTask(with: url) { data, response, error in
+    func responseData(url: URL, completion: @escaping (Result<Data, GHError>) -> Void) {
+        let task = session.dataTask(with: url) { data, response, error in
             if error != nil {
                 completion(.failure(GHError.unableToComplete))
                 return
@@ -52,6 +43,7 @@ final class DefaultDataRequest: DataRequest {
 
             completion(.success(data))
         }
-        task?.resume()
+        task.resume()
+        tasks.append(task)
     }
 }

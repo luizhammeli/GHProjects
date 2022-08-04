@@ -50,12 +50,13 @@ final class RepositoriesListViewController: UICollectionViewController {
         guard viewModel.hasMoreData else { return }
 
         viewModel.fetchRepositories { [weak self] success, errorMessage in
+            guard let self = self else { return }
             guard success else {
-                self?.showDefaultAlertOnMainThreadIfNeeded(title: GHError.titleError.rawValue,
-                                                           message: errorMessage ?? GHError.genericError.rawValue)
+                self.showDefaultAlertOnMainThreadIfNeeded(title: GHError.titleError.rawValue,
+                                                          message: errorMessage ?? GHError.genericError.rawValue)
                 return
             }
-            self?.reloadDataOnMainThread()
+            self.reloadDataOnMainThread()
         }
     }
 

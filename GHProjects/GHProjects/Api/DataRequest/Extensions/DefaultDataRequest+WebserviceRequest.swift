@@ -8,4 +8,4 @@
 
 import Foundation
 
-extension DefaultDataRequest: WebserviceRequest {}
+// extension DefaultDataRequest: WebserviceRequest {}

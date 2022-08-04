@@ -68,6 +68,7 @@
 		265ECBBB0F98CDECD72C9246 /* Pods_GHProjectsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE1AE14CB55A13F3E23C01E /* Pods_GHProjectsTests.framework */; };
 		38306BA528975E6C00FE5199 /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38306BA428975E6C00FE5199 /* URLProtocolStub.swift */; };
 		38306BA728975E8200FE5199 /* NSCacheSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38306BA628975E8200FE5199 /* NSCacheSpy.swift */; };
+		38306BAB289A0F3A00FE5199 /* DefaultNetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38306BAA289A0F3A00FE5199 /* DefaultNetworkManagerTests.swift */; };
 		38CFC1822877C0F900B6C31A /* DefaultRepositoryServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CFC1812877C0F900B6C31A /* DefaultRepositoryServiceTests.swift */; };
 		82471529BA5A1A17D5B05024 /* Pods_GHProjects_GHProjectsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC856D7BC489F66FD47205BB /* Pods_GHProjects_GHProjectsUITests.framework */; };
 		A908735F24294364009ADE96 /* TabBarControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A908735E24294364009ADE96 /* TabBarControllerTests.swift */; };
@@ -224,6 +225,7 @@
 		3727B211A3DAE31064A36A62 /* Pods_GHProjects.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GHProjects.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		38306BA428975E6C00FE5199 /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
 		38306BA628975E8200FE5199 /* NSCacheSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSCacheSpy.swift; sourceTree = "<group>"; };
+		38306BAA289A0F3A00FE5199 /* DefaultNetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNetworkManagerTests.swift; sourceTree = "<group>"; };
 		38CFC1812877C0F900B6C31A /* DefaultRepositoryServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRepositoryServiceTests.swift; sourceTree = "<group>"; };
 		47E0CC947FFCA8E7E4949D2D /* Pods-GHProjects-GHProjectsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GHProjects-GHProjectsUITests.debug.xcconfig"; path = "Target Support Files/Pods-GHProjects-GHProjectsUITests/Pods-GHProjects-GHProjectsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		4FC4592164E5C0C6EFAEB9DC /* Pods-ios-base-architecture.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-base-architecture.release.xcconfig"; path = "Target Support Files/Pods-ios-base-architecture/Pods-ios-base-architecture.release.xcconfig"; sourceTree = "<group>"; };
@@ -521,7 +523,8 @@
 		2559C34E2894496D004B315E /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				2559C34F28945EEE004B315E /* DefaultImageDownloaderTests.swift */,
+				38306BA8289A0EFA00FE5199 /* ImageDownloader */,
+				38306BAA289A0F3A00FE5199 /* DefaultNetworkManagerTests.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -750,6 +753,14 @@
 				38306BA428975E6C00FE5199 /* URLProtocolStub.swift */,
 			);
 			path = Stubs;
+			sourceTree = "<group>";
+		};
+		38306BA8289A0EFA00FE5199 /* ImageDownloader */ = {
+			isa = PBXGroup;
+			children = (
+				2559C34F28945EEE004B315E /* DefaultImageDownloaderTests.swift */,
+			);
+			path = ImageDownloader;
 			sourceTree = "<group>";
 		};
 		38CFC1802877C0D500B6C31A /* Service */ = {
@@ -1797,6 +1808,7 @@
 				A9BEB573242E8ABB00E75823 /* DefaultRepositoryViewModelTests.swift in Sources */,
 				2559C347289422CB004B315E /* GHAvatarImageViewTests.swift in Sources */,
 				254B6806289084A200B02E18 /* XCTestCase+MemoryLeak.swift in Sources */,
+				38306BAB289A0F3A00FE5199 /* DefaultNetworkManagerTests.swift in Sources */,
 				2559C35028945EEE004B315E /* DefaultImageDownloaderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

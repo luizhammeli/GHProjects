@@ -72,6 +72,9 @@ private extension GHAvatarImageViewTests {
         let serviceSpy = ImageDownloaderSpy()
         let sut = GHAvatarImageView(size: size, imageDownloader: serviceSpy)
         
+        checkMemoryLeak(for: sut)
+        checkMemoryLeak(for: serviceSpy)
+
         return (sut, serviceSpy)
     }
     

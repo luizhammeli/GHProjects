@@ -95,4 +95,9 @@ final class PullRequestCollectionViewCell: UICollectionViewCell {
         separatorView.isHidden = removeSeparator
         accessibilityIdentifier = "pullRequestCollectionViewCell\(index)"
     }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        avatarImageView.image = nil
+    }
 }

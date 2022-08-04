@@ -169,6 +169,7 @@ private extension RepositoriesListViewControllerTests {
         let serviceSpy = RepositoryServiceSpy()
         let sut = DependencyContainer().makeRepositoriesListViewController(coordinator: coordinator,
                                                                            service: serviceSpy)
+
         return (sut, serviceSpy)
     }
 }

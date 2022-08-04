@@ -9,6 +9,6 @@
 import Foundation
 
 protocol DataRequest {
-    init(url: URL, method: HTTPMethod, parameters: [String: Any], headers: [String: String])
-    func responseData(completion: @escaping (Result<Data, GHError>) -> Void)
+    func cancel()
+    func responseData(url: URL, completion: @escaping (Result<Data, GHError>) -> Void)
 }

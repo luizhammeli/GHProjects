@@ -44,6 +44,11 @@ final class RepositoryCollectionViewCell: UICollectionViewCell {
         setupProjectInfoStackView()
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        avatarImageView.image = nil
+    }
+
     func setupHeaderViews() {
         avatarImageView.widthAnchor.constraint(equalToConstant: 60).isActive = true
 

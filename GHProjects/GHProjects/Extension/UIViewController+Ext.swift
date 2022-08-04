@@ -19,13 +19,13 @@ extension UIViewController {
             self.present(alertController, animated: true, completion: nil)
         }
     }
-    
+
     private func showDefaultAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
+
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(action)
-        
+
         self.present(alertController, animated: true, completion: nil)
     }
 
@@ -33,8 +33,8 @@ extension UIViewController {
         if Thread.isMainThread {
             showDefaultAlert(title: title, message: message)
         } else {
-            DispatchQueue.main.async {
-                self.showDefaultAlert(title: title, message: message)
+            DispatchQueue.main.async { [weak self] in
+                self?.showDefaultAlert(title: title, message: message)
             }
         }
     }
