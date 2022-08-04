@@ -76,9 +76,8 @@ final class DefaultNetworkManagerTests: XCTestCase {
         }
         sut = nil
         wait(for: [exp], timeout: 1)
-
-        XCTAssertTrue(didCancel)
         
+        XCTAssertTrue(didCancel)
     }
 }
  
