@@ -37,7 +37,7 @@ final class DefaultDataRequest: DataRequest {
                 return
             }
 
-            guard let data = data else {
+            guard let data = data, !data.isEmpty else {
                 completion(.failure(GHError.invalidData))
                 return
             }
@@ -45,7 +45,7 @@ final class DefaultDataRequest: DataRequest {
             completion(.success(data))
         }
         task.resume()
-        
+
         let networkTask = DefaultNetworkRequestTask(task: task)
         tasks.append(networkTask)
 

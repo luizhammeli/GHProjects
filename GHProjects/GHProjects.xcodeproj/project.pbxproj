@@ -66,6 +66,8 @@
 		25F197BA2423D61800CCC496 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F197B92423D61800CCC496 /* SeparatorView.swift */; };
 		25F197BC2423D71D00CCC496 /* CellSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F197BB2423D71C00CCC496 /* CellSeparatorView.swift */; };
 		265ECBBB0F98CDECD72C9246 /* Pods_GHProjectsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE1AE14CB55A13F3E23C01E /* Pods_GHProjectsTests.framework */; };
+		380664A628A048BA0085DB2D /* GenericTestFactories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380664A528A048BA0085DB2D /* GenericTestFactories.swift */; };
+		380664A828A058980085DB2D /* BundleStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380664A728A058980085DB2D /* BundleStub.swift */; };
 		38306BA528975E6C00FE5199 /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38306BA428975E6C00FE5199 /* URLProtocolStub.swift */; };
 		38306BA728975E8200FE5199 /* NSCacheSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38306BA628975E8200FE5199 /* NSCacheSpy.swift */; };
 		38306BAB289A0F3A00FE5199 /* DefaultNetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38306BAA289A0F3A00FE5199 /* DefaultNetworkManagerTests.swift */; };
@@ -225,6 +227,8 @@
 		25F197B92423D61800CCC496 /* SeparatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		25F197BB2423D71C00CCC496 /* CellSeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSeparatorView.swift; sourceTree = "<group>"; };
 		3727B211A3DAE31064A36A62 /* Pods_GHProjects.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GHProjects.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		380664A528A048BA0085DB2D /* GenericTestFactories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTestFactories.swift; sourceTree = "<group>"; };
+		380664A728A058980085DB2D /* BundleStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleStub.swift; sourceTree = "<group>"; };
 		38306BA428975E6C00FE5199 /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
 		38306BA628975E8200FE5199 /* NSCacheSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSCacheSpy.swift; sourceTree = "<group>"; };
 		38306BAA289A0F3A00FE5199 /* DefaultNetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNetworkManagerTests.swift; sourceTree = "<group>"; };
@@ -408,6 +412,7 @@
 			isa = PBXGroup;
 			children = (
 				254B68082890866700B02E18 /* RepositoryFakeFactories.swift */,
+				380664A528A048BA0085DB2D /* GenericTestFactories.swift */,
 			);
 			path = Fakes;
 			sourceTree = "<group>";
@@ -757,6 +762,7 @@
 			isa = PBXGroup;
 			children = (
 				38306BA428975E6C00FE5199 /* URLProtocolStub.swift */,
+				380664A728A058980085DB2D /* BundleStub.swift */,
 			);
 			path = Stubs;
 			sourceTree = "<group>";
@@ -1284,7 +1290,6 @@
 			isa = PBXGroup;
 			children = (
 				A9D3CE502416E20900BED70D /* Controller */,
-				A9D3CE522416E20900BED70D /* View */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1295,13 +1300,6 @@
 				A9D3CE512416E20900BED70D /* FavoritesViewController.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		A9D3CE522416E20900BED70D /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		A9D3CE542416E20900BED70D /* RepositoriesList */ = {
@@ -1808,6 +1806,7 @@
 				38306BAF289E012500FE5199 /* DefaultDataRequestTests.swift in Sources */,
 				254B6810289087AA00B02E18 /* RepositoriesListCoordinatorTests.swift in Sources */,
 				254B68092890866700B02E18 /* RepositoryFakeFactories.swift in Sources */,
+				380664A628A048BA0085DB2D /* GenericTestFactories.swift in Sources */,
 				254B68162891664100B02E18 /* RepositoriesListViewControllerIntegrationTests.swift in Sources */,
 				254B680D2890871900B02E18 /* NetworkManagerSpy.swift in Sources */,
 				A9BEB578242E8E7A00E75823 /* FakeResponseType.swift in Sources */,
@@ -1818,6 +1817,7 @@
 				254B6806289084A200B02E18 /* XCTestCase+MemoryLeak.swift in Sources */,
 				38306BAB289A0F3A00FE5199 /* DefaultNetworkManagerTests.swift in Sources */,
 				2559C35028945EEE004B315E /* DefaultImageDownloaderTests.swift in Sources */,
+				380664A828A058980085DB2D /* BundleStub.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

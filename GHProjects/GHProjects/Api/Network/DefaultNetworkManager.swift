@@ -11,15 +11,17 @@ import UIKit
 final class DefaultNetworkManager: NetworkManager {
     private let request: DataRequest
     private let cache = NSCache<NSString, UIImage>()
-    private let baseUrl: String = {
-        guard let url = Bundle.main.object(forInfoDictionaryKey: "BASE_URL") as? String else {
+    private let bundle: Bundle
+    private lazy var baseUrl: String = {
+        guard let url = bundle.object(forInfoDictionaryKey: "BASE_URL") as? String else {
             fatalError("No such url as BASE_URL in info.plist")
         }
         return url
     }()
 
-    init(request: DataRequest = DefaultDataRequest()) {
+    init(request: DataRequest = DefaultDataRequest(), bundle: Bundle = Bundle.main) {
         self.request = request
+        self.bundle = bundle
     }
 
     func fetch(urlString: String,

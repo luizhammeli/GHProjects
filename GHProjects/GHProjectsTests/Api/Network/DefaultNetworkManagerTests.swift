@@ -10,6 +10,20 @@ import XCTest
 @testable import GHProjects
 
 final class DefaultNetworkManagerTests: XCTestCase {
+    func test_bundle_shouldGetCorrectData() {
+        let stringURL = "https://test.com/"
+        let bundleStub = BundleStub(url: stringURL)
+        let (sut, spy) = makeSUT(bundle: bundleStub)
+        
+        sut.fetch(urlString: "test",
+                  method: .get,
+                  parameters: [:],
+                  headers: [:]) { _ in }
+        
+        XCTAssertEqual(bundleStub.receivedKeys, ["BASE_URL"])
+        XCTAssertEqual(spy.urls, [stringURL.appending("test")])
+    }
+    
     func test_fetch_shouldFailWithInvalidURL() {
         var receivedResult: Result<Data, GHError>?
         let (sut, _) = makeSUT()
@@ -82,9 +96,9 @@ final class DefaultNetworkManagerTests: XCTestCase {
 }
  
 private extension DefaultNetworkManagerTests {
-    func makeSUT() -> (DefaultNetworkManager, DataRequestSpy) {
+    func makeSUT(bundle: Bundle = Bundle.main) -> (DefaultNetworkManager, DataRequestSpy) {
         let spy = DataRequestSpy()
-        let sut = DefaultNetworkManager(request: spy)
+        let sut = DefaultNetworkManager(request: spy, bundle: bundle)
 
         checkMemoryLeak(for: sut)
         checkMemoryLeak(for: spy)

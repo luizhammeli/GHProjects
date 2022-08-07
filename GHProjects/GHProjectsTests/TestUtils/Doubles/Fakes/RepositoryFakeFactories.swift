@@ -40,16 +40,3 @@ func makeRepositoryItems() -> Repository {
                       forksCount: 0,
                       openIssuesCount: 0)
 }
-
-func makeURL() -> URL {
-    URL(string: "https://www.test.com")!
-}
-
-func makeError() -> NSError {
-    NSError(domain: "", code: 1)
-}
-
-func makeImageData() -> (data: Data, image: UIImage) {
-    let image = UIImage.make(withColor: .red)
-    return (image.pngData()!, image)
-}
