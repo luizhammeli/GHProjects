@@ -92,24 +92,3 @@ private extension DefaultNetworkManagerTests {
         return (sut, spy)
     }
 }
-
-final class DataRequestSpy: DataRequest {
-    private var receivedMessages: [(url: URL, completion: (Result<Data, GHError>) -> Void)] = []
-    var cancelCalled: (() -> Void)?
-    
-    var urls: [String] {
-        receivedMessages.map { $0.url.description }
-    }
-
-    func cancel() {
-        cancelCalled?()
-    }
-    
-    func responseData(url: URL, completion: @escaping (Result<Data, GHError>) -> Void) {
-        receivedMessages.append((url: url, completion: completion))
-    }
-    
-    func complete(with result: Result<Data, GHError>, at index: Int = 0) {
-        receivedMessages[index].completion(result)
-    }
-}

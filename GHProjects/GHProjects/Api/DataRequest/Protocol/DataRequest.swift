@@ -10,5 +10,5 @@ import Foundation
 
 protocol DataRequest {
     func cancel()
-    func responseData(url: URL, completion: @escaping (Result<Data, GHError>) -> Void)
+    func responseData(url: URL, completion: @escaping (Result<Data, GHError>) -> Void) -> NetworkRequesTask
 }

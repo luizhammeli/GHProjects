@@ -12,7 +12,7 @@ final class DefaultDataRequest: DataRequest {
     // MARK: - Properties
     private let session: URLSession
 
-    var tasks: [URLSessionTask?] = []
+    private var tasks: [NetworkRequesTask] = []
 
     // MARK: - Init
     init(session: URLSession = URLSession.shared) {
@@ -20,11 +20,12 @@ final class DefaultDataRequest: DataRequest {
     }
 
     // MARK: - Functions
-    func cancel() {        
-        tasks.forEach { $0?.cancel() }
+    func cancel() {
+        tasks.forEach { $0.cancel() }
     }
 
-    func responseData(url: URL, completion: @escaping (Result<Data, GHError>) -> Void) {
+    @discardableResult
+    func responseData(url: URL, completion: @escaping (Result<Data, GHError>) -> Void) -> NetworkRequesTask {
         let task = session.dataTask(with: url) { data, response, error in
             if error != nil {
                 completion(.failure(GHError.unableToComplete))
@@ -44,6 +45,30 @@ final class DefaultDataRequest: DataRequest {
             completion(.success(data))
         }
         task.resume()
-        tasks.append(task)
+        
+        let networkTask = DefaultNetworkRequestTask(task: task)
+        tasks.append(networkTask)
+
+        return networkTask
+    }
+}
+
+protocol NetworkRequesTask {
+    var isCanceled: Bool { get set }
+
+    func cancel()
+}
+
+class DefaultNetworkRequestTask: NetworkRequesTask {
+    private let task: URLSessionTask
+    var isCanceled: Bool = false
+
+    init(task: URLSessionTask) {
+        self.task = task
+    }
+
+    func cancel() {
+        isCanceled = true
+        task.cancel()
     }
 }
