@@ -68,6 +68,7 @@
 		265ECBBB0F98CDECD72C9246 /* Pods_GHProjectsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE1AE14CB55A13F3E23C01E /* Pods_GHProjectsTests.framework */; };
 		380664A628A048BA0085DB2D /* GenericTestFactories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380664A528A048BA0085DB2D /* GenericTestFactories.swift */; };
 		380664A828A058980085DB2D /* BundleStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380664A728A058980085DB2D /* BundleStub.swift */; };
+		380664AD28A093540085DB2D /* DefaultPullRequestServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380664AC28A093540085DB2D /* DefaultPullRequestServiceTests.swift */; };
 		38306BA528975E6C00FE5199 /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38306BA428975E6C00FE5199 /* URLProtocolStub.swift */; };
 		38306BA728975E8200FE5199 /* NSCacheSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38306BA628975E8200FE5199 /* NSCacheSpy.swift */; };
 		38306BAB289A0F3A00FE5199 /* DefaultNetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38306BAA289A0F3A00FE5199 /* DefaultNetworkManagerTests.swift */; };
@@ -229,6 +230,7 @@
 		3727B211A3DAE31064A36A62 /* Pods_GHProjects.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GHProjects.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		380664A528A048BA0085DB2D /* GenericTestFactories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTestFactories.swift; sourceTree = "<group>"; };
 		380664A728A058980085DB2D /* BundleStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleStub.swift; sourceTree = "<group>"; };
+		380664AC28A093540085DB2D /* DefaultPullRequestServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPullRequestServiceTests.swift; sourceTree = "<group>"; };
 		38306BA428975E6C00FE5199 /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
 		38306BA628975E8200FE5199 /* NSCacheSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSCacheSpy.swift; sourceTree = "<group>"; };
 		38306BAA289A0F3A00FE5199 /* DefaultNetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNetworkManagerTests.swift; sourceTree = "<group>"; };
@@ -674,10 +676,10 @@
 		25CE7C212400472700A54079 /* GHProjectsTests */ = {
 			isa = PBXGroup;
 			children = (
+				A9BEB574242E8E5700E75823 /* TestUtils */,
 				2559C34D28944966004B315E /* Api */,
 				2559C34428942205004B315E /* CustomViews */,
 				A9BEB56F242E8A8100E75823 /* Features */,
-				A9BEB574242E8E5700E75823 /* TestUtils */,
 				25CE7C242400472700A54079 /* Info.plist */,
 			);
 			path = GHProjectsTests;
@@ -756,6 +758,30 @@
 				25F08E292423E37F00ABADF3 /* RepoCollectionViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		380664A928A0932A0085DB2D /* PullRequest */ = {
+			isa = PBXGroup;
+			children = (
+				380664AA28A0933B0085DB2D /* List */,
+			);
+			path = PullRequest;
+			sourceTree = "<group>";
+		};
+		380664AA28A0933B0085DB2D /* List */ = {
+			isa = PBXGroup;
+			children = (
+				380664AB28A093490085DB2D /* Service */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		380664AB28A093490085DB2D /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				380664AC28A093540085DB2D /* DefaultPullRequestServiceTests.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		38306BA328975E6000FE5199 /* Stubs */ = {
@@ -1072,6 +1098,7 @@
 		A9BEB56F242E8A8100E75823 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				380664A928A0932A0085DB2D /* PullRequest */,
 				A9BEB570242E8A8700E75823 /* RepositoriesList */,
 			);
 			path = Features;
@@ -1210,9 +1237,9 @@
 			isa = PBXGroup;
 			children = (
 				A9B56503241C180B00C1EE52 /* Flow */,
+				A9D3CE482416E20900BED70D /* Service */,
 				A9D3CE3C2416E20900BED70D /* ViewModel */,
 				A9D3CE432416E20900BED70D /* View */,
-				A9D3CE482416E20900BED70D /* Service */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -1803,6 +1830,7 @@
 				38306BA728975E8200FE5199 /* NSCacheSpy.swift in Sources */,
 				2559C3432892FC48004B315E /* RepositoriesListCoordinatorSpy.swift in Sources */,
 				38306BAD289B587E00FE5199 /* DataRequestSpy.swift in Sources */,
+				380664AD28A093540085DB2D /* DefaultPullRequestServiceTests.swift in Sources */,
 				38306BAF289E012500FE5199 /* DefaultDataRequestTests.swift in Sources */,
 				254B6810289087AA00B02E18 /* RepositoriesListCoordinatorTests.swift in Sources */,
 				254B68092890866700B02E18 /* RepositoryFakeFactories.swift in Sources */,

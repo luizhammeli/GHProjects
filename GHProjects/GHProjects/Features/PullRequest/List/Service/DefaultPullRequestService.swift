@@ -10,33 +10,35 @@ import Foundation
 
 final class DefaultPullRequestService: PullRequestService {
     private var page: Int
-    private let networkManager: DefaultNetworkManager
+    private let networkManager: NetworkManager
 
-    init(page: Int = 1, networkManager: DefaultNetworkManager = DefaultNetworkManager()) {
+    init(page: Int = 1, networkManager: NetworkManager = DefaultNetworkManager()) {
         self.page = page
         self.networkManager = networkManager
     }
 
-    func fetchPullRequestData(_ owner: String, repository: String, completion: @escaping (Result<[PullRequest], GHError>, Bool) -> Void) {
+    func fetchPullRequestData(_ owner: String,
+                              repository: String,
+                              completion: @escaping (Result<[PullRequest], GHError>, Bool) -> Void) {
         let urlString = "repos/\(owner)/\(repository)/pulls?per_page=20&page=\(page)"
 
         networkManager.fetch(urlString: urlString, method: .get, parameters: [:], headers: [:]) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let data):
-                 do {
+                do {
                     let decodedObject = try GHDecoder().decode([PullRequest].self, from: data)
                     completion(.success(decodedObject), self.checkAndUpdatePage(decodedObject))
-                 } catch {
+                } catch {
                     completion(.failure(GHError.invalidData), false)
-                 }
+                }
             case .failure(let error):
                 completion(.failure(error), false)
             }
         }
     }
 
-    func checkAndUpdatePage(_ pullRequests: [PullRequest]) -> Bool {
+    private func checkAndUpdatePage(_ pullRequests: [PullRequest]) -> Bool {
         page += 1
         return pullRequests.count == 20
     }

@@ -101,6 +101,9 @@ final class DefaultDataRequestTests: XCTestCase {
 private extension DefaultDataRequestTests {
     func makeSUT() -> DefaultDataRequest {
         let sut = DefaultDataRequest()
+        
+        checkMemoryLeak(for: sut)
+        
         return sut
     }
     

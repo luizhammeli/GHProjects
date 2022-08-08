@@ -100,7 +100,7 @@ final class DefaultImageDownloaderTests: XCTestCase {
 
 private extension DefaultImageDownloaderTests {
     func makeSut(cacheSpy: NSCache<NSString, UIImage> = NSCache<NSString, UIImage>()) -> (DefaultImageDownloader) {
-        let sut = DefaultImageDownloader(cache: cacheSpy)        
+        let sut = DefaultImageDownloader(cache: cacheSpy)                
         
         return sut
     }
