@@ -17,7 +17,7 @@ final class DefaultPullRequestViewModel: PullRequestViewModel {
 
     private var pullRequestViewModelItens = [PullRequestViewModelItem]()
 
-    required init(ownerName: String, repoName: String, service: PullRequestService) {
+    init(ownerName: String, repoName: String, service: PullRequestService) {
         self.ownerName = ownerName
         self.repoName = repoName
         self.service = service
@@ -33,20 +33,20 @@ final class DefaultPullRequestViewModel: PullRequestViewModel {
                 self.setPullRequestsData(pullRequestsData)
                 completion(true, nil)
             case .failure(let error):
-                completion(false, error.localizedDescription)
+                completion(false, error.rawValue)
             }
         }
     }
 
-    func setPullRequestsData(_ pullRequestsData: [PullRequest]) {
+    private func setPullRequestsData(_ pullRequestsData: [PullRequest]) {
         pullRequestViewModelItens += pullRequestsData.map { item -> PullRequestViewModelItem in
-            let strDate = item.createdAt.convertToMonthDayYearFormat() ?? Date().description
+            let strDate = item.createdAt?.convertToMonthDayYearFormat() ?? Date().convertToMonthDayYearFormat()
             let body = item.body?.filter { !$0.isNewline }
             return PullRequestViewModelItem(login: item.user.login,
                                             number: item.number,
                                             title: item.title,
                                             body: body,
-                                            createdAt: strDate,
+                                            createdAt: strDate ?? "",
                                             avatarUrl: item.user.avatarUrl)
         }
     }

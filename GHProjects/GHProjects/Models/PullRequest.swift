@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct PullRequest: Codable {
+struct PullRequest: Codable, Equatable {
     let id: Int
     let number: Int
     let title: String
     let body: String?
-    let createdAt: Date
+    let createdAt: Date?
     let user: User
     let base: Base
 }

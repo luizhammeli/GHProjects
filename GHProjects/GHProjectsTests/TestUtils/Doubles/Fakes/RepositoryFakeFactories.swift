@@ -40,3 +40,55 @@ func makeRepositoryItems() -> Repository {
                       forksCount: 0,
                       openIssuesCount: 0)
 }
+
+func makeFakePullRequest(id: Int = 1, createdAt: Date? = nil) -> PullRequest {
+    return PullRequest(id: id,
+                       number: 10,
+                       title: "teste",
+                       body: nil,
+                       createdAt: createdAt,
+                       user: makeUser(),
+                       base: makeBase())
+}
+
+func  makePullRequestViewModelItem(title: String = "Test Title") -> PullRequestViewModelItem {
+    return PullRequestViewModelItem(login: "", number: 0, title: title, body: nil, createdAt: "", avatarUrl: nil)
+}
+
+func makeFakePullRequestModels(title: String = "Test Title") -> (PullRequest, PullRequestViewModelItem) {
+    let pr = PullRequest(id: 0,
+                         number: 10,
+                         title: title,
+                         body: nil,
+                         createdAt: Date(),
+                         user: makeUser(),
+                         base: makeBase())
+    
+    let viewModel = PullRequestViewModelItem(login: pr.user.login,
+                                             number: pr.number,
+                                             title: pr.title,
+                                             body: nil,
+                                             createdAt: pr.createdAt?.convertToMonthDayYearFormat() ?? "",
+                                             avatarUrl: nil)
+    return (pr, viewModel)
+}
+
+func makeUser(id: Int = 1, createdAt: Date? = nil) -> User {
+    return User(id: id,
+                login: "login",
+                avatarUrl: nil,
+                company: nil,
+                name: nil,
+                location: nil,
+                bio: nil,
+                publicRepos: nil,
+                publicGists: nil,
+                htmlUrl: makeURL().description,
+                following: nil,
+                followers: nil,
+                createdAt: createdAt)
+}
+
+func makeBase() -> Base {
+    return .init(label: "label", ref: "ref", repo: makeRepository().model)
+}

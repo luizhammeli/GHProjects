@@ -69,6 +69,8 @@
 		380664A628A048BA0085DB2D /* GenericTestFactories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380664A528A048BA0085DB2D /* GenericTestFactories.swift */; };
 		380664A828A058980085DB2D /* BundleStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380664A728A058980085DB2D /* BundleStub.swift */; };
 		380664AD28A093540085DB2D /* DefaultPullRequestServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380664AC28A093540085DB2D /* DefaultPullRequestServiceTests.swift */; };
+		380664B028A1E7050085DB2D /* PullRequestListCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380664AF28A1E7050085DB2D /* PullRequestListCoordinatorTests.swift */; };
+		380664B328AC737F0085DB2D /* PullRequestViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380664B228AC737F0085DB2D /* PullRequestViewModelTests.swift */; };
 		38306BA528975E6C00FE5199 /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38306BA428975E6C00FE5199 /* URLProtocolStub.swift */; };
 		38306BA728975E8200FE5199 /* NSCacheSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38306BA628975E8200FE5199 /* NSCacheSpy.swift */; };
 		38306BAB289A0F3A00FE5199 /* DefaultNetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38306BAA289A0F3A00FE5199 /* DefaultNetworkManagerTests.swift */; };
@@ -231,6 +233,8 @@
 		380664A528A048BA0085DB2D /* GenericTestFactories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTestFactories.swift; sourceTree = "<group>"; };
 		380664A728A058980085DB2D /* BundleStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleStub.swift; sourceTree = "<group>"; };
 		380664AC28A093540085DB2D /* DefaultPullRequestServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPullRequestServiceTests.swift; sourceTree = "<group>"; };
+		380664AF28A1E7050085DB2D /* PullRequestListCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullRequestListCoordinatorTests.swift; sourceTree = "<group>"; };
+		380664B228AC737F0085DB2D /* PullRequestViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullRequestViewModelTests.swift; sourceTree = "<group>"; };
 		38306BA428975E6C00FE5199 /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
 		38306BA628975E8200FE5199 /* NSCacheSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSCacheSpy.swift; sourceTree = "<group>"; };
 		38306BAA289A0F3A00FE5199 /* DefaultNetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNetworkManagerTests.swift; sourceTree = "<group>"; };
@@ -771,6 +775,8 @@
 		380664AA28A0933B0085DB2D /* List */ = {
 			isa = PBXGroup;
 			children = (
+				380664B128A7355B0085DB2D /* ViewModel */,
+				380664AE28A1E6B70085DB2D /* Flow */,
 				380664AB28A093490085DB2D /* Service */,
 			);
 			path = List;
@@ -782,6 +788,22 @@
 				380664AC28A093540085DB2D /* DefaultPullRequestServiceTests.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		380664AE28A1E6B70085DB2D /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				380664AF28A1E7050085DB2D /* PullRequestListCoordinatorTests.swift */,
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		380664B128A7355B0085DB2D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				380664B228AC737F0085DB2D /* PullRequestViewModelTests.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		38306BA328975E6000FE5199 /* Stubs */ = {
@@ -1824,6 +1846,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9BEB576242E8E6000E75823 /* FakeService.swift in Sources */,
+				380664B028A1E7050085DB2D /* PullRequestListCoordinatorTests.swift in Sources */,
 				38CFC1822877C0F900B6C31A /* DefaultRepositoryServiceTests.swift in Sources */,
 				2559C34C2894490B004B315E /* UIImage+MakeFakeImage.swift in Sources */,
 				38306BA528975E6C00FE5199 /* URLProtocolStub.swift in Sources */,
@@ -1843,6 +1866,7 @@
 				A9BEB573242E8ABB00E75823 /* DefaultRepositoryViewModelTests.swift in Sources */,
 				2559C347289422CB004B315E /* GHAvatarImageViewTests.swift in Sources */,
 				254B6806289084A200B02E18 /* XCTestCase+MemoryLeak.swift in Sources */,
+				380664B328AC737F0085DB2D /* PullRequestViewModelTests.swift in Sources */,
 				38306BAB289A0F3A00FE5199 /* DefaultNetworkManagerTests.swift in Sources */,
 				2559C35028945EEE004B315E /* DefaultImageDownloaderTests.swift in Sources */,
 				380664A828A058980085DB2D /* BundleStub.swift in Sources */,

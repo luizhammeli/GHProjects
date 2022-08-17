@@ -6,7 +6,7 @@
 //  Copyright © 2020 PEBMED. All rights reserved.
 //
 
-struct Base: Codable {
+struct Base: Codable, Equatable {
     let label: String
     let ref: String
     let repo: Repository

@@ -40,6 +40,6 @@ final class DefaultPullRequestService: PullRequestService {
 
     private func checkAndUpdatePage(_ pullRequests: [PullRequest]) -> Bool {
         page += 1
-        return pullRequests.count == 20
+        return pullRequests.count >= 20
     }
 }
