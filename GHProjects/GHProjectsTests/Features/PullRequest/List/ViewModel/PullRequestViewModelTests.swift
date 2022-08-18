@@ -62,6 +62,7 @@ final class PullRequestViewModelTests: XCTestCase {
     }
     
     func test_fetchPullRequests_shouldFailIfServiceCompleteWithError() {
+        // Given
         let (sut, spy) = makeSUT()
         var result: ((Bool, String?))?
         
@@ -75,6 +76,7 @@ final class PullRequestViewModelTests: XCTestCase {
     }
     
     func test_fetchPullRequests_shouldSucceedIfServiceCompleteWithSuccess() {
+        // Given
         let (sut, spy) = makeSUT()
         var result: ((Bool, String?))?
         
@@ -88,16 +90,60 @@ final class PullRequestViewModelTests: XCTestCase {
     }
     
     func test_fetchPullRequests_shouldReturnCorrectDataIfServiceCompleteWithSuccess() {
+        // Given
         let (sut, spy) = makeSUT()        
         let expectedResult = makeFakePullRequestModels()
         
         // When
         sut.fetchPullRequests { _, _ in }
-        spy.complete(with: .success([expectedResult.0]))
+        spy.complete(with: .success([expectedResult.0]), hasMoreData: false)
         let receveivedData = sut.getPullRequestViewModelItem(with: IndexPath(item: 0, section: 0))
         
         // Then
         XCTAssertEqual(receveivedData, expectedResult.1)
+        XCTAssertEqual(sut.hasMoreData, false)
+    }
+    
+    func test_fetchPullRequests_shouldReturnCorrectNumberOfItemsIfServiceCompleteWithSuccess() {
+        // Given
+        let (sut, spy) = makeSUT()
+        
+        // When
+        sut.fetchPullRequests { _, _ in }
+        spy.complete(with: .success([makeFakePullRequestModels().0,  makeFakePullRequestModels().0]))
+        let numberOfItems = sut.getPullRequestViewModelNumberOfItems()
+        
+        // Then
+        XCTAssertEqual(numberOfItems, 2)
+    }
+    
+    func test_fetchPullRequests_shouldReturnCorrectCreationDateIfServiceReturnNilValue() {
+        // Given
+        let (sut, spy) = makeSUT()
+        let expectedResult = Date().convertToMonthDayYearFormat()
+        
+        // When
+        sut.fetchPullRequests { _, _ in }
+        spy.complete(with: .success([makeFakePullRequestModels(createdAt: nil).0]))
+        let receveivedData = sut.getPullRequestViewModelItem(with: IndexPath(item: 0, section: 0))
+        
+        // Then
+        XCTAssertEqual(receveivedData.createdAt, expectedResult)
+    }
+    
+    func test_fetchPullRequests_shouldReturnCorrectViewModelValueForBodyFieldIfResponseDataHasBreakingLineCharacter() {
+        // Given
+        let (sut, spy) = makeSUT()
+        let body = "value\n"
+        let expectedBody = "value"
+        
+        // When
+        sut.fetchPullRequests { _, _ in }
+        spy.complete(with: .success([makeFakePullRequestModels(body: body).0]))
+        let receveivedData = sut.getPullRequestViewModelItem(with: IndexPath(item: 0, section: 0))
+        
+        // Then
+        XCTAssertEqual(receveivedData.body, expectedBody)
     }
 }
 
@@ -107,21 +153,5 @@ private extension PullRequestViewModelTests {
         let sut = DefaultPullRequestViewModel(ownerName: ownerName, repoName: repoName, service: spy)
         
         return (sut, spy)
-    }
-}
-
-final class PullRequestServiceSpy: PullRequestService {
-    var completions: [(Result<[PullRequest], GHError>, Bool) -> Void] = []
-    var requestData = [(owner: String, repository: String)]()
-
-    func fetchPullRequestData(_ owner: String,
-                              repository: String,
-                              completion: @escaping (Result<[PullRequest], GHError>, Bool) -> Void) {
-        completions.append(completion)
-        requestData.append((owner, repository))
-    }
-    
-    func complete(with result: Result<[PullRequest], GHError>, success: Bool = true, at index: Int = 0) {
-        completions[index](result, success)
     }
 }

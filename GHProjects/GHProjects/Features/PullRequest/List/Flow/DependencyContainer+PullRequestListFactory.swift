@@ -8,11 +8,12 @@
 
 extension DependencyContainer: PullRequestListFactory {
     func makePullRequestListViewController(coordinator: PullRequestListCoordinatorProtocol,
-                                           viewModelItem: RepositoryViewModelItem) -> PullRequestListViewController {
-        let service = DefaultPullRequestService()
+                                           viewModelItem: RepositoryViewModelItem,
+                                           service: PullRequestService) -> PullRequestListViewController {
         let defaultPullRequestViewModel = DefaultPullRequestViewModel(ownerName: viewModelItem.login,
                                                                       repoName: viewModelItem.name,
                                                                       service: service)
+
         return PullRequestListViewController(coordinator: coordinator, viewModel: defaultPullRequestViewModel)
     }
 }

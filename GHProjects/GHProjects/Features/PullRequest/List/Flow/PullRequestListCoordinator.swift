@@ -29,7 +29,7 @@ final class PullRequestListCoordinator: Coordinator {
 
     // MARK: - Coordinator
     func start() {
-        let controller = factory.makePullRequestListViewController(coordinator: self, viewModelItem: viewModelItem)
+        let controller = factory.makePullRequestListViewController(coordinator: self, viewModelItem: viewModelItem, service: DefaultPullRequestService())
         navigationController.pushViewController(controller, animated: true)
     }
 

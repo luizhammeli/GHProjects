@@ -8,5 +8,6 @@
 
 protocol PullRequestListFactory {
     func makePullRequestListViewController(coordinator: PullRequestListCoordinatorProtocol,
-                                           viewModelItem: RepositoryViewModelItem) -> PullRequestListViewController
+                                           viewModelItem: RepositoryViewModelItem,
+                                           service: PullRequestService) -> PullRequestListViewController
 }

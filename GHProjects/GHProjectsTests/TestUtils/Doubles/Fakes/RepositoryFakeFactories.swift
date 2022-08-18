@@ -55,19 +55,19 @@ func  makePullRequestViewModelItem(title: String = "Test Title") -> PullRequestV
     return PullRequestViewModelItem(login: "", number: 0, title: title, body: nil, createdAt: "", avatarUrl: nil)
 }
 
-func makeFakePullRequestModels(title: String = "Test Title") -> (PullRequest, PullRequestViewModelItem) {
+func makeFakePullRequestModels(title: String = "Test Title", createdAt: Date? = Date(), body: String? = nil) -> (PullRequest, PullRequestViewModelItem) {
     let pr = PullRequest(id: 0,
                          number: 10,
                          title: title,
-                         body: nil,
-                         createdAt: Date(),
+                         body: body,
+                         createdAt: createdAt,
                          user: makeUser(),
                          base: makeBase())
     
     let viewModel = PullRequestViewModelItem(login: pr.user.login,
                                              number: pr.number,
                                              title: pr.title,
-                                             body: nil,
+                                             body: pr.body,
                                              createdAt: pr.createdAt?.convertToMonthDayYearFormat() ?? "",
                                              avatarUrl: nil)
     return (pr, viewModel)
