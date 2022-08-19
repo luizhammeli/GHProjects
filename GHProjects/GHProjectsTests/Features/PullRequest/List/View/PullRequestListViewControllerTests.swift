@@ -142,6 +142,7 @@ private extension PullRequestListViewControllerTests {
 
 final class PullRequestListCoordinatorSpy: PullRequestListCoordinatorProtocol {
     var receivedData: [PullRequestViewModelItem] = []
+
     func goToDetail(viewModelItem: PullRequestViewModelItem, ownerName: String, repoName: String) {
         receivedData.append(viewModelItem)
     }
