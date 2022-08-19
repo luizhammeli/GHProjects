@@ -9,15 +9,15 @@
 import UIKit
 
 final class PullRequestCollectionViewCell: UICollectionViewCell {
-    private let userLoginLabel = GHTitleLabel()
-    private let titleLabel = GHSubtitleLabel()
-    private let dateLabel = GHSecondaryLabel()
-    private let desciprionLabel = GHBodyLabel()
+    let userLoginLabel = GHTitleLabel()
+    let titleLabel = GHSubtitleLabel()
+    let dateLabel = GHSecondaryLabel()
+    let desciprionLabel = GHBodyLabel()
 
-    private let separatorView = SeparatorView()
-    private lazy var avatarImageView = GHAvatarImageView(size: avatarImageSize)
+    let separatorView = SeparatorView()
+    lazy var avatarImageView = GHAvatarImageView(size: avatarImageSize)
 
-    private let avatarImageSize = CGSize(width: 58, height: 58)
+    let avatarImageSize = CGSize(width: 58, height: 58)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
