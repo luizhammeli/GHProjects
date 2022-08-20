@@ -7,10 +7,15 @@
 //
 
 extension DependencyContainer: RepositoryFactory {
-    func makeRepositoriesListViewController(coordinator: RepositoriesListCoordinatorProtocol,
-                                            service: RepositoryService = DefaultRepositoryService()) -> RepositoriesListViewController {
-        let viewModel = DefaultRepositoryViewModel(service: service)
-        let controller = RepositoriesListViewController(coordinator: coordinator, viewModel: viewModel)
+    func makeRepositoriesListViewController(
+        coordinator: RepositoriesListCoordinatorProtocol,
+        service: RepositoryService = DefaultRepositoryService(),
+        analyticsWrapper: RepositoriesListAnalyticsWrapper
+    ) -> RepositoriesListViewController {
+        let viewModel = DefaultRepositoryViewModel(service: service)        
+        let controller = RepositoriesListViewController(coordinator: coordinator,
+                                                        viewModel: viewModel,
+                                                        analyticsWrapper: analyticsWrapper)
         controller.title = "Repositories"
         controller.tabBarItem.image = SFSymbols.folder
         return controller

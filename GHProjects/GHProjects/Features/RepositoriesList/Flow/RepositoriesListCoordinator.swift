@@ -27,7 +27,10 @@ final class RepositoriesListCoordinator: Coordinator {
 
     // MARK: - Coordinator
     func start() {
-        let controller = factory.makeRepositoriesListViewController(coordinator: self, service: DefaultRepositoryService())
+        let analyticsWrapper = DefaultRepositoriesListAnalyticsWrapper(manager: MainAnalyticsManager.shared)
+        let controller = factory.makeRepositoriesListViewController(coordinator: self,
+                                                                    service: DefaultRepositoryService(),
+                                                                    analyticsWrapper: analyticsWrapper)
         navigationController.viewControllers = [controller]
     }
 

@@ -61,6 +61,48 @@ final class RepositoriesListViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.numberOfItems(), 1)
     }
     
+    func test_getRepositories_shouldSendRequestStateTracksCorrectlyWhenOperationStarts() {
+        let analyticsWrapper = RepositoriesListAnalyticsWrapperSpy()
+        let (sut, service) = makeSUT(analyticsWrapper: analyticsWrapper)
+        let fakeRepository = makeRepository().model
+        
+        sut.loadViewIfNeeded()
+        
+        XCTAssertEqual(analyticsWrapper.receivedStates, [.loading])
+    }
+    
+    func test_getRepositories_shouldSendRequestStateTracksCorrectlyForSuccessCase() {
+        let analyticsWrapper = RepositoriesListAnalyticsWrapperSpy()
+        let (sut, service) = makeSUT(analyticsWrapper: analyticsWrapper)
+        
+        sut.loadViewIfNeeded()
+        service.complete(with: .success(.init(items: [])), hasMoreData: false)
+        
+        XCTAssertEqual(analyticsWrapper.receivedStates, [.loading, .success])
+    }
+    
+    func test_getRepositories_shouldSendRequestStateTracksCorrectlyForErrorCase() {
+        let analyticsWrapper = RepositoriesListAnalyticsWrapperSpy()
+        let (sut, service) = makeSUT(analyticsWrapper: analyticsWrapper)
+
+        sut.loadViewIfNeeded()
+        service.complete(with: .failure(.invalidData), hasMoreData: false)
+        
+        XCTAssertEqual(analyticsWrapper.receivedStates, [.loading, .error])
+    }
+    
+    func test_getRepositories_shouldNotSendRequestStateTracksWithoutDataToFetch() {
+        let analyticsWrapper = RepositoriesListAnalyticsWrapperSpy()
+        let (sut, service) = makeSUT(analyticsWrapper: analyticsWrapper)
+
+        sut.loadViewIfNeeded()
+        service.complete(with: .success(.init(items: [])), hasMoreData: false)
+        analyticsWrapper.receivedStates.removeAll()
+        sut.viewDidLoad()
+        
+        XCTAssertTrue(analyticsWrapper.receivedStates.isEmpty)
+    }
+    
     func test_cellForItem_shouldReturnCorrectCell() {
         let (sut, service) = makeSUT()
         let fakeRepository = makeRepository().model
@@ -165,10 +207,15 @@ final class RepositoriesListViewControllerTests: XCTestCase {
 // MARK: - Helpers
 
 private extension RepositoriesListViewControllerTests {
-    func makeSUT(coordinator: RepositoriesListCoordinatorSpy = RepositoriesListCoordinatorSpy()) -> (RepositoriesListViewController, RepositoryServiceSpy) {
+    func makeSUT(coordinator: RepositoriesListCoordinatorSpy = RepositoriesListCoordinatorSpy(),
+                 analyticsWrapper: RepositoriesListAnalyticsWrapperSpy = RepositoriesListAnalyticsWrapperSpy()
+    ) -> (RepositoriesListViewController, RepositoryServiceSpy) {
         let serviceSpy = RepositoryServiceSpy()
-        let sut = DependencyContainer().makeRepositoriesListViewController(coordinator: coordinator,
-                                                                           service: serviceSpy)
+        let sut = DependencyContainer().makeRepositoriesListViewController(
+            coordinator: coordinator,
+            service: serviceSpy,
+            analyticsWrapper: analyticsWrapper
+        )
 
         return (sut, serviceSpy)
     }
@@ -207,5 +254,21 @@ fileprivate extension RepositoriesListViewController {
     
     func registeredCellSize(with description: String) -> CGSize {
         RepositoryCollectionViewCell.getCellHeight(with: description)
+    }
+}
+
+final class RepositoriesListAnalyticsWrapperSpy: RepositoriesListAnalyticsWrapper {
+    var receivedStates = [RepositoriesListAnalyticsFetchState]()
+
+    func trackFetchRepositories(state: RepositoriesListAnalyticsFetchState) {
+        receivedStates.append(state)
+    }
+}
+
+final class AnalyticsManagerSpy: AnalyticsManager {
+    var receivedTracks: [(key: String, values: [String: String]?)] = []
+    
+    func track(key: String, value: [String : String]?) {
+        receivedTracks.append((key, value))
     }
 }

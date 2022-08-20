@@ -8,5 +8,6 @@
 
 protocol RepositoryFactory {
     func makeRepositoriesListViewController(coordinator: RepositoriesListCoordinatorProtocol,
-                                            service: RepositoryService) -> RepositoriesListViewController
+                                            service: RepositoryService,
+                                            analyticsWrapper: RepositoriesListAnalyticsWrapper) -> RepositoriesListViewController
 }

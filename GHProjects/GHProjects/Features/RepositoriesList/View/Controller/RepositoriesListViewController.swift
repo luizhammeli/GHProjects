@@ -11,11 +11,15 @@ import UIKit
 final class RepositoriesListViewController: UICollectionViewController {
     private let coordinator: RepositoriesListCoordinatorProtocol
     private let viewModel: RepositoryViewModel
+    private let analyticsWrapper: RepositoriesListAnalyticsWrapper
 
     // MARK: - Init
-    init(coordinator: RepositoriesListCoordinatorProtocol, viewModel: RepositoryViewModel) {
+    init(coordinator: RepositoriesListCoordinatorProtocol,
+         viewModel: RepositoryViewModel,
+         analyticsWrapper: RepositoriesListAnalyticsWrapper) {
         self.coordinator = coordinator
         self.viewModel = viewModel
+        self.analyticsWrapper = analyticsWrapper
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
     }
 
@@ -49,13 +53,22 @@ final class RepositoriesListViewController: UICollectionViewController {
     private func getRepositories() {
         guard viewModel.hasMoreData else { return }
 
+        self.analyticsWrapper.trackFetchRepositories(state: .loading)
+
         viewModel.fetchRepositories { [weak self] success, errorMessage in
             guard let self = self else { return }
+            
             guard success else {
-                self.showDefaultAlertOnMainThreadIfNeeded(title: GHError.titleError.rawValue,
-                                                          message: errorMessage ?? GHError.genericError.rawValue)
+                self.showDefaultAlertOnMainThreadIfNeeded(
+                    title: GHError.titleError.rawValue,
+                    message: errorMessage ?? GHError.genericError.rawValue
+                )
+                self.analyticsWrapper.trackFetchRepositories(state: .error)
+
                 return
             }
+
+            self.analyticsWrapper.trackFetchRepositories(state: .success)
             self.reloadDataOnMainThread()
         }
     }
