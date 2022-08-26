@@ -91,6 +91,7 @@
 		38306BAB289A0F3A00FE5199 /* DefaultNetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38306BAA289A0F3A00FE5199 /* DefaultNetworkManagerTests.swift */; };
 		38306BAD289B587E00FE5199 /* DataRequestSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38306BAC289B587E00FE5199 /* DataRequestSpy.swift */; };
 		38306BAF289E012500FE5199 /* DefaultDataRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38306BAE289E012500FE5199 /* DefaultDataRequestTests.swift */; };
+		3861A3B828B83FD000A84FF6 /* DefaultPullRequestDetailServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3861A3B728B83FD000A84FF6 /* DefaultPullRequestDetailServiceTests.swift */; };
 		38CFC1822877C0F900B6C31A /* DefaultRepositoryServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CFC1812877C0F900B6C31A /* DefaultRepositoryServiceTests.swift */; };
 		82471529BA5A1A17D5B05024 /* Pods_GHProjects_GHProjectsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC856D7BC489F66FD47205BB /* Pods_GHProjects_GHProjectsUITests.framework */; };
 		A908735F24294364009ADE96 /* TabBarControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A908735E24294364009ADE96 /* TabBarControllerTests.swift */; };
@@ -266,6 +267,7 @@
 		38306BAA289A0F3A00FE5199 /* DefaultNetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNetworkManagerTests.swift; sourceTree = "<group>"; };
 		38306BAC289B587E00FE5199 /* DataRequestSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRequestSpy.swift; sourceTree = "<group>"; };
 		38306BAE289E012500FE5199 /* DefaultDataRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDataRequestTests.swift; sourceTree = "<group>"; };
+		3861A3B728B83FD000A84FF6 /* DefaultPullRequestDetailServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPullRequestDetailServiceTests.swift; sourceTree = "<group>"; };
 		38CFC1812877C0F900B6C31A /* DefaultRepositoryServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRepositoryServiceTests.swift; sourceTree = "<group>"; };
 		47E0CC947FFCA8E7E4949D2D /* Pods-GHProjects-GHProjectsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GHProjects-GHProjectsUITests.debug.xcconfig"; path = "Target Support Files/Pods-GHProjects-GHProjectsUITests/Pods-GHProjects-GHProjectsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		4FC4592164E5C0C6EFAEB9DC /* Pods-ios-base-architecture.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-base-architecture.release.xcconfig"; path = "Target Support Files/Pods-ios-base-architecture/Pods-ios-base-architecture.release.xcconfig"; sourceTree = "<group>"; };
@@ -842,6 +844,7 @@
 		380664A928A0932A0085DB2D /* PullRequest */ = {
 			isa = PBXGroup;
 			children = (
+				3861A3B228B83E8500A84FF6 /* Detail */,
 				380664AA28A0933B0085DB2D /* List */,
 			);
 			path = PullRequest;
@@ -931,6 +934,22 @@
 				2559C34F28945EEE004B315E /* DefaultImageDownloaderTests.swift */,
 			);
 			path = ImageDownloader;
+			sourceTree = "<group>";
+		};
+		3861A3B228B83E8500A84FF6 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				3861A3B328B83E9100A84FF6 /* Service */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		3861A3B328B83E9100A84FF6 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				3861A3B728B83FD000A84FF6 /* DefaultPullRequestDetailServiceTests.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		38CFC1802877C0D500B6C31A /* Service */ = {
@@ -1997,6 +2016,7 @@
 				A9BEB573242E8ABB00E75823 /* DefaultRepositoryViewModelTests.swift in Sources */,
 				2559C347289422CB004B315E /* GHAvatarImageViewTests.swift in Sources */,
 				254B6806289084A200B02E18 /* XCTestCase+MemoryLeak.swift in Sources */,
+				3861A3B828B83FD000A84FF6 /* DefaultPullRequestDetailServiceTests.swift in Sources */,
 				380664B328AC737F0085DB2D /* PullRequestViewModelTests.swift in Sources */,
 				38306BAB289A0F3A00FE5199 /* DefaultNetworkManagerTests.swift in Sources */,
 				257D70EA28B7EEE7005B1854 /* GHTabBarControllerTests.swift in Sources */,

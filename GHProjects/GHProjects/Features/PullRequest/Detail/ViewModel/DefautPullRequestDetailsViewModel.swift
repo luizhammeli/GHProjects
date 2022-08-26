@@ -49,7 +49,7 @@ final class DefautPullRequestDetailsViewModel: PullRequestDetailsViewModel {
             )
         )
 
-        let createdDate = pullRequestsDetailData.createdAt.convertToMonthDayYearFormat() ?? Date().description
+        let createdDate = pullRequestsDetailData.createdAt?.convertToMonthDayYearFormat() ?? Date().description
 
         pullRequestDetailViewModelItem = PullRequestDetailViewModelItem(
             number: "#\(pullRequestsDetailData.number)",

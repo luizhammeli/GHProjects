@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PullRequestDetail: Codable {
+struct PullRequestDetail: Codable, Equatable {
     let id: Int
     let number: Int
     let changedFiles: Int
@@ -17,7 +17,7 @@ struct PullRequestDetail: Codable {
     let title: String
     let state: String
     let body: String
-    let createdAt: Date
+    let createdAt: Date?
     let base: Base
     let head: Base
 }

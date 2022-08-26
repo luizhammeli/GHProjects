@@ -51,6 +51,20 @@ func makeFakePullRequest(id: Int = 1, createdAt: Date? = nil) -> PullRequest {
                        base: makeBase())
 }
 
+func makeFakePullRequestDetail(id: Int = 1, createdAt: Date? = nil) -> PullRequestDetail {
+    return PullRequestDetail(id: id,
+                             number: 2,
+                             changedFiles: 3,
+                             additions: 4,
+                             deletions: 5,
+                             title: "Teste",
+                             state: "Test State",
+                             body: "Test Body",
+                             createdAt: createdAt,
+                             base: makeBase(),
+                             head: makeBase())
+}
+
 func  makePullRequestViewModelItem(title: String = "Test Title") -> PullRequestViewModelItem {
     return PullRequestViewModelItem(login: "", number: 0, title: title, body: nil, createdAt: "", avatarUrl: nil)
 }
