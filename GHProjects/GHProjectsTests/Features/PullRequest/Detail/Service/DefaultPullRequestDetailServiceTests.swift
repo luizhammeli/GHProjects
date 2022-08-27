@@ -76,7 +76,7 @@ private extension DefaultPullRequestDetailServiceTests {
     }
     
     func makeFakeData() -> (model: PullRequestDetail, data: Data) {
-        let pullRequestDetail = makeFakePullRequestDetail()
+        let pullRequestDetail = makeFakePullRequestDetail().model
         let data = try! JSONEncoder().encode(pullRequestDetail)
         
         return (pullRequestDetail, data)

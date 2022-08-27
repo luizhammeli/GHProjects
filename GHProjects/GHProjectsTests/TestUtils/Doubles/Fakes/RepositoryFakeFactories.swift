@@ -51,18 +51,34 @@ func makeFakePullRequest(id: Int = 1, createdAt: Date? = nil) -> PullRequest {
                        base: makeBase())
 }
 
-func makeFakePullRequestDetail(id: Int = 1, createdAt: Date? = nil) -> PullRequestDetail {
-    return PullRequestDetail(id: id,
-                             number: 2,
-                             changedFiles: 3,
-                             additions: 4,
-                             deletions: 5,
-                             title: "Teste",
-                             state: "Test State",
-                             body: "Test Body",
-                             createdAt: createdAt,
-                             base: makeBase(),
-                             head: makeBase())
+func makeFakePullRequestDetail(id: Int = 1, createdAt: Date? = nil) -> (model: PullRequestDetail,
+                                                                        viewModel: PullRequestDetailViewModelItem) {
+    let model = PullRequestDetail(id: id,
+                                  number: 2,
+                                  changedFiles: 3,
+                                  additions: 4,
+                                  deletions: 5,
+                                  title: "Teste",
+                                  state: "Test State",
+                                  body: "Test Body",
+                                  createdAt: createdAt,
+                                  base: makeBase(),
+                                  head: makeBase())
+    
+    let viewModel = PullRequestDetailViewModelItem(number: "#\(model.number)", changedFiles: "\(model.changedFiles) files changed",
+                                                   title: "Teste",
+                                                   state: "Test State",
+                                                   body: "Test Body",
+                                                   createdAt: Date().description,
+                                                   baseAvatarUrl: model.base.repo.owner.avatarUrl ?? "",
+                                                   headAvatarUrl: model.head.repo.owner.avatarUrl ?? "",
+                                                   fullName: model.base.repo.fullName!,
+                                                   additionsDeletions: NSMutableAttributedString(),
+                                                   baseBranchName: model.base.ref,
+                                                   headBranchName: model.base.label,
+                                                   userName: model.head.repo.owner.login)
+    
+    return (model, viewModel)
 }
 
 func  makePullRequestViewModelItem(title: String = "Test Title") -> PullRequestViewModelItem {

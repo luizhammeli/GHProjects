@@ -33,7 +33,7 @@ final class DefautPullRequestDetailsViewModel: PullRequestDetailsViewModel {
                 self?.setPullRequestsDetailData(pullRequestDetail)
                 completion(true, nil)
             case .failure(let error):
-                completion(false, error.localizedDescription)
+                completion(false, error.rawValue)
             }
         }
     }

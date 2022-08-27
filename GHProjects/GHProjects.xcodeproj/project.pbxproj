@@ -93,6 +93,7 @@
 		38306BAD289B587E00FE5199 /* DataRequestSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38306BAC289B587E00FE5199 /* DataRequestSpy.swift */; };
 		38306BAF289E012500FE5199 /* DefaultDataRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38306BAE289E012500FE5199 /* DefaultDataRequestTests.swift */; };
 		3861A3B828B83FD000A84FF6 /* DefaultPullRequestDetailServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3861A3B728B83FD000A84FF6 /* DefaultPullRequestDetailServiceTests.swift */; };
+		3861A3BB28B9BD4300A84FF6 /* DefautPullRequestDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3861A3BA28B9BD4300A84FF6 /* DefautPullRequestDetailsViewModelTests.swift */; };
 		38CFC1822877C0F900B6C31A /* DefaultRepositoryServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CFC1812877C0F900B6C31A /* DefaultRepositoryServiceTests.swift */; };
 		82471529BA5A1A17D5B05024 /* Pods_GHProjects_GHProjectsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC856D7BC489F66FD47205BB /* Pods_GHProjects_GHProjectsUITests.framework */; };
 		A908735F24294364009ADE96 /* TabBarControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A908735E24294364009ADE96 /* TabBarControllerTests.swift */; };
@@ -270,6 +271,7 @@
 		38306BAC289B587E00FE5199 /* DataRequestSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRequestSpy.swift; sourceTree = "<group>"; };
 		38306BAE289E012500FE5199 /* DefaultDataRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDataRequestTests.swift; sourceTree = "<group>"; };
 		3861A3B728B83FD000A84FF6 /* DefaultPullRequestDetailServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPullRequestDetailServiceTests.swift; sourceTree = "<group>"; };
+		3861A3BA28B9BD4300A84FF6 /* DefautPullRequestDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefautPullRequestDetailsViewModelTests.swift; sourceTree = "<group>"; };
 		38CFC1812877C0F900B6C31A /* DefaultRepositoryServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRepositoryServiceTests.swift; sourceTree = "<group>"; };
 		47E0CC947FFCA8E7E4949D2D /* Pods-GHProjects-GHProjectsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GHProjects-GHProjectsUITests.debug.xcconfig"; path = "Target Support Files/Pods-GHProjects-GHProjectsUITests/Pods-GHProjects-GHProjectsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		4FC4592164E5C0C6EFAEB9DC /* Pods-ios-base-architecture.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-base-architecture.release.xcconfig"; path = "Target Support Files/Pods-ios-base-architecture/Pods-ios-base-architecture.release.xcconfig"; sourceTree = "<group>"; };
@@ -579,13 +581,6 @@
 				38306BAE289E012500FE5199 /* DefaultDataRequestTests.swift */,
 			);
 			path = Network;
-			sourceTree = "<group>";
-		};
-		255B5C3D28B935ED000EB005 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		257BE0D2241D1C0E0092A693 /* UserDetail */ = {
@@ -956,7 +951,7 @@
 		3861A3B228B83E8500A84FF6 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				255B5C3D28B935ED000EB005 /* ViewModel */,
+				3861A3B928B9BC8400A84FF6 /* ViewModel */,
 				257D70EE28B8F11E005B1854 /* Flow */,
 				3861A3B328B83E9100A84FF6 /* Service */,
 			);
@@ -969,6 +964,14 @@
 				3861A3B728B83FD000A84FF6 /* DefaultPullRequestDetailServiceTests.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		3861A3B928B9BC8400A84FF6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3861A3BA28B9BD4300A84FF6 /* DefautPullRequestDetailsViewModelTests.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		38CFC1802877C0D500B6C31A /* Service */ = {
@@ -2019,6 +2022,7 @@
 				380F522428B1744F00256B07 /* RepositoriesListAnalyticsWrapperTests.swift in Sources */,
 				2559C3432892FC48004B315E /* RepositoriesListCoordinatorSpy.swift in Sources */,
 				38306BAD289B587E00FE5199 /* DataRequestSpy.swift in Sources */,
+				3861A3BB28B9BD4300A84FF6 /* DefautPullRequestDetailsViewModelTests.swift in Sources */,
 				380664AD28A093540085DB2D /* DefaultPullRequestServiceTests.swift in Sources */,
 				38306BAF289E012500FE5199 /* DefaultDataRequestTests.swift in Sources */,
 				254B6810289087AA00B02E18 /* RepositoriesListCoordinatorTests.swift in Sources */,
