@@ -58,6 +58,9 @@ private extension DefaultPullRequestDetailServiceTests {
         let networkManagerSpy = NetworkManagerSpy()
         let sut = DefaultPullRequestDetailsService(networkManager: networkManagerSpy)
         
+        checkMemoryLeak(for: sut)
+        checkMemoryLeak(for: networkManagerSpy)
+
         return (sut, networkManagerSpy)
     }
     

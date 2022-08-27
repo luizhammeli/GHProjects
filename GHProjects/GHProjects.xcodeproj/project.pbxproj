@@ -36,6 +36,7 @@
 		257BE0E7241D25310092A693 /* UserDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257BE0E6241D25310092A693 /* UserDetailService.swift */; };
 		257D70EA28B7EEE7005B1854 /* GHTabBarControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257D70E928B7EEE7005B1854 /* GHTabBarControllerTests.swift */; };
 		257D70ED28B7F3D0005B1854 /* TabbarCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257D70EC28B7F3D0005B1854 /* TabbarCoordinatorTests.swift */; };
+		257D70F028B8F18F005B1854 /* PullRequestDetailCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257D70EF28B8F18F005B1854 /* PullRequestDetailCoordinatorTests.swift */; };
 		257DC6CF24059DBB00051554 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257DC6CE24059DBB00051554 /* Date+Ext.swift */; };
 		257DC6D22405B97E00051554 /* UICollectionView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257DC6D12405B97E00051554 /* UICollectionView+Ext.swift */; };
 		257DC6D62407062400051554 /* BranchNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257DC6D52407062400051554 /* BranchNameView.swift */; };
@@ -212,6 +213,7 @@
 		257BE0E6241D25310092A693 /* UserDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailService.swift; sourceTree = "<group>"; };
 		257D70E928B7EEE7005B1854 /* GHTabBarControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHTabBarControllerTests.swift; sourceTree = "<group>"; };
 		257D70EC28B7F3D0005B1854 /* TabbarCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarCoordinatorTests.swift; sourceTree = "<group>"; };
+		257D70EF28B8F18F005B1854 /* PullRequestDetailCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullRequestDetailCoordinatorTests.swift; sourceTree = "<group>"; };
 		257DC6CE24059DBB00051554 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		257DC6D12405B97E00051554 /* UICollectionView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Ext.swift"; sourceTree = "<group>"; };
 		257DC6D52407062400051554 /* BranchNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchNameView.swift; sourceTree = "<group>"; };
@@ -579,6 +581,13 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		255B5C3D28B935ED000EB005 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		257BE0D2241D1C0E0092A693 /* UserDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -684,6 +693,14 @@
 			isa = PBXGroup;
 			children = (
 				257D70EC28B7F3D0005B1854 /* TabbarCoordinatorTests.swift */,
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		257D70EE28B8F11E005B1854 /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				257D70EF28B8F18F005B1854 /* PullRequestDetailCoordinatorTests.swift */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -939,6 +956,8 @@
 		3861A3B228B83E8500A84FF6 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				255B5C3D28B935ED000EB005 /* ViewModel */,
+				257D70EE28B8F11E005B1854 /* Flow */,
 				3861A3B328B83E9100A84FF6 /* Service */,
 			);
 			path = Detail;
@@ -2009,6 +2028,7 @@
 				254B68162891664100B02E18 /* RepositoriesListViewControllerIntegrationTests.swift in Sources */,
 				254B680D2890871900B02E18 /* NetworkManagerSpy.swift in Sources */,
 				25CCC12528AD582D00D387E9 /* PullRequestServiceSpy.swift in Sources */,
+				257D70F028B8F18F005B1854 /* PullRequestDetailCoordinatorTests.swift in Sources */,
 				A9BEB578242E8E7A00E75823 /* FakeResponseType.swift in Sources */,
 				257D70ED28B7F3D0005B1854 /* TabbarCoordinatorTests.swift in Sources */,
 				2559C34A289448B3004B315E /* ImageDownloaderSpy.swift in Sources */,
