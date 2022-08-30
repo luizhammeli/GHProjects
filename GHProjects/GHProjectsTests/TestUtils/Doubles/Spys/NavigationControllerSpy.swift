@@ -10,9 +10,14 @@ import UIKit
 
 final class NavigationControllerSpy: UINavigationController {
     var pushedControllers: [UIViewController] = []
+    var dismissWasCalled = false
     
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         super.pushViewController(viewController, animated: true)
         pushedControllers.append(viewController)
+    }
+    
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        dismissWasCalled = true
     }
 }

@@ -65,6 +65,16 @@ func makeFakePullRequestDetail(id: Int = 1, createdAt: Date? = nil) -> (model: P
                                   base: makeBase(),
                                   head: makeBase())
     
+    let atributtedString = NSMutableAttributedString(
+        string: "+\(model.additions) ",
+        attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGreen]
+    )
+    atributtedString.append(NSAttributedString(
+        string: " -\(model.deletions)",
+        attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed]
+        )
+    )
+    
     let viewModel = PullRequestDetailViewModelItem(number: "#\(model.number)", changedFiles: "\(model.changedFiles) files changed",
                                                    title: "Teste",
                                                    state: "Test State",
@@ -73,7 +83,7 @@ func makeFakePullRequestDetail(id: Int = 1, createdAt: Date? = nil) -> (model: P
                                                    baseAvatarUrl: model.base.repo.owner.avatarUrl ?? "",
                                                    headAvatarUrl: model.head.repo.owner.avatarUrl ?? "",
                                                    fullName: model.base.repo.fullName!,
-                                                   additionsDeletions: NSMutableAttributedString(),
+                                                   additionsDeletions: atributtedString,
                                                    baseBranchName: model.base.ref,
                                                    headBranchName: model.base.label,
                                                    userName: model.head.repo.owner.login)

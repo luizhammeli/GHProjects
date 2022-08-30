@@ -18,7 +18,7 @@ final class DefaultUserDetailService: UserDetailService {
     func fetchUserDetailData(userName: String, completionHandler: @escaping (Result<User, GHError>) -> Void) {
         networkManager.fetch(urlString: "users/\(userName)", method: .get, parameters: [:], headers: [:]) { result in
             switch result {
-            case .success (let data):
+            case .success(let data):
                 do {
                     let decoder = JSONDecoder()
                     decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -28,7 +28,7 @@ final class DefaultUserDetailService: UserDetailService {
                 } catch {
                     completionHandler(.failure(GHError.invalidData))
                 }
-            case .failure (let error):
+            case .failure(let error):
                 completionHandler(.failure(error))
             }
         }

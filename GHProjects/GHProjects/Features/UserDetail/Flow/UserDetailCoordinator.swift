@@ -18,21 +18,23 @@ final class UserDetailCoordinator: Coordinator {
     private let factory: UserDetailFactory
     private let userName: String
     private var navigationController: UINavigationController
+    private var userDetailRootNavigationController: UINavigationController
 
-    init(userName: String, factory: UserDetailFactory, navigationController: UINavigationController) {
+    init(userName: String, factory: UserDetailFactory,
+         navigationController: UINavigationController,
+         userDetailRootNavigationController: UINavigationController = UINavigationController()) {
         self.factory = factory
         self.userName = userName
         self.navigationController = navigationController
+        self.userDetailRootNavigationController = userDetailRootNavigationController
     }
 
     func start() {
-        let userDetailNavigationController = UINavigationController()
         let controller = factory.makeUserDetailViewController(userName: userName, coordinator: self)
 
-        userDetailNavigationController.viewControllers = [controller]
+        userDetailRootNavigationController.viewControllers = [controller]
 
-        navigationController.present(userDetailNavigationController, animated: true, completion: nil)
-        navigationController = userDetailNavigationController
+        navigationController.present(userDetailRootNavigationController, animated: true, completion: nil)
     }
 }
 
@@ -40,8 +42,8 @@ final class UserDetailCoordinator: Coordinator {
 extension UserDetailCoordinator: UserDetailCoordinatorProtocol {
     func goToProfile(stringUrl: String) {
         guard let url = URL(string: stringUrl) else { return }
-        let safariController = SFSafariViewController(url: url)
-        navigationController.pushViewController(safariController, animated: true)
+        let safariController = SFSafariViewController(url: url)        
+        userDetailRootNavigationController.pushViewController(safariController, animated: true)
     }
 
     func closeViewController() {
