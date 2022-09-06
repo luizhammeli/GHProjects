@@ -7,9 +7,9 @@
 //
 
 import XCTest
+import SafariServices
 
 @testable import GHProjects
-import SafariServices
 
 final class UserDetailCoordinatorTests: XCTestCase {
     func test_start_() {

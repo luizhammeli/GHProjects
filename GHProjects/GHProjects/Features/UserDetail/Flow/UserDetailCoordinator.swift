@@ -7,6 +7,7 @@
 //
 
 import SafariServices
+import DependencyCompositionContainer
 import UIKit
 
 protocol UserDetailCoordinatorProtocol: AnyObject {
@@ -14,7 +15,7 @@ protocol UserDetailCoordinatorProtocol: AnyObject {
     func closeViewController()
 }
 
-final class UserDetailCoordinator: Coordinator {
+final class UserDetailCoordinator: Coordinator, NewCoordinator {
     private let factory: UserDetailFactory
     private let userName: String
     private var navigationController: UINavigationController

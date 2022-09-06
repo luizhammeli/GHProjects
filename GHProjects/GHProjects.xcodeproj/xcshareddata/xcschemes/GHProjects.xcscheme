@@ -61,6 +61,16 @@
                ReferencedContainer = "container:GHProjects.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "38E3565028C6AD3700D5FB4D"
+               BuildableName = "HelperMenuTests.xctest"
+               BlueprintName = "HelperMenuTests"
+               ReferencedContainer = "container:GHProjects.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

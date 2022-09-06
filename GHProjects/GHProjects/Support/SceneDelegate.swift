@@ -6,6 +6,7 @@
 //  Copyright © 2020 PEBMED. All rights reserved.
 //
 
+import HelperMenu
 import UIKit
 
 final class SceneDelegate: UIResponder {
@@ -29,11 +30,12 @@ extension SceneDelegate: UIWindowSceneDelegate {
 
         let window = configuredWindow(scene: scene)
 
-        let applicationCoordinator = ApplicationCoordinator(window: window)
-        self.applicationCoordinator = applicationCoordinator
-        applicationCoordinator.start()
+        let applicationCoordinator = UINavigationController(rootViewController: MenuViewController(container: DependencyContainer())) //ApplicationCoordinator(window: window)
+        //self.applicationCoordinator = applicationCoordinator
+        //applicationCoordinator.start()
 
         window.makeKeyAndVisible()
+        window.rootViewController = applicationCoordinator
     }
 }
 
