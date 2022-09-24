@@ -35,7 +35,7 @@ final class DefaultUserDetailViewModel: UserDetailViewModel {
         return userProfessionalDataViewModelItem
     }
 
-    func setupUserProfessionalDataViewModelItem(user: User) -> UserProfessionalDataViewModelItem {
+    private func setupUserProfessionalDataViewModelItem(user: User) -> UserProfessionalDataViewModelItem {
         return UserProfessionalDataViewModelItem(login: user.login,
                                                  name: user.name ?? "",
                                                  location: user.location ?? "No Location Available",
@@ -47,7 +47,7 @@ final class DefaultUserDetailViewModel: UserDetailViewModel {
                                                                                                        followers: user.followers ?? 0))
     }
 
-    func setupFollowersAtributtedText(following: Int, followers: Int) -> NSMutableAttributedString {
+    private func setupFollowersAtributtedText(following: Int, followers: Int) -> NSMutableAttributedString {
         let atributtedString = NSMutableAttributedString(
             string: "\(followers) ",
             attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 13.5)])
