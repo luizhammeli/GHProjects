@@ -54,15 +54,15 @@ final class UserDetailViewController: UICollectionViewController {
 
     private func getUserDetail() {
         showLoader()
-        viewModel.fetchUserDetail { success, errorMessage in
-            self.removeLoader()
+        viewModel.fetchUserDetail { [weak self] success, errorMessage in
+            self?.removeLoader()
             guard success else {
-                self.showDefaultAlertOnMainThread(title: GHError.titleError.rawValue,
-                                                  message: errorMessage ?? GHError.genericError.rawValue)
+                self?.showDefaultAlertOnMainThread(title: GHError.titleError.rawValue,
+                                                   message: errorMessage ?? GHError.genericError.rawValue)
                 return
             }
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
+            DispatchQueue.main.async { [weak self] in
+                self?.collectionView.reloadData()
             }
         }
     }
@@ -74,6 +74,10 @@ final class UserDetailViewController: UICollectionViewController {
 
     @objc private func didSelectCloseButton() {
         coordinator.closeViewController()
+    }
+
+    deinit {
+        print("DEINIT UserDetailViewController")
     }
 }
 
@@ -94,6 +98,10 @@ extension UserDetailViewController {
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as UserReposCollectionViewCell
         cell.setupCollectionView(viewModel: viewModel)
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        coordinator.goToProfile(stringUrl: "http://apple.com.br")
     }
 }
 
